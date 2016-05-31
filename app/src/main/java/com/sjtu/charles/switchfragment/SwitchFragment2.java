@@ -10,6 +10,8 @@ import android.view.animation.Animation;
 import android.widget.Button;
 
 import com.corelib.animations.fragmentanimations.CubeAnimation;
+import com.corelib.animations.fragmentanimations.FlipAnimation;
+import com.corelib.animations.fragmentanimations.SidesAnimation;
 import com.corelib.base.ui.TFragment;
 import com.sjtu.charles.R;
 import com.sjtu.charles.core.AppConstants;
@@ -81,9 +83,9 @@ public class SwitchFragment2 extends TFragment {
         if (withAnimation) {
             switch (direction) {
                 case CubeAnimation.RIGHT:
-                    return CubeAnimation.create(CubeAnimation.RIGHT, enter, ANIMATION_DURATION);
+                    return SidesAnimation.create(SidesAnimation.RIGHT, enter, ANIMATION_DURATION);
                 default:
-                    return CubeAnimation.create(CubeAnimation.LEFT, enter, ANIMATION_DURATION);
+                    return SidesAnimation.create(SidesAnimation.LEFT, enter, ANIMATION_DURATION);
             }
         } else {
             return null;

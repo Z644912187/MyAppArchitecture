@@ -44,14 +44,14 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="登录"/>
+                android:text="fragment1"/>
 
             <Button
                 android:id="@+id/btn_switch_to_2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="注册"/>
+                android:text="fragment2"/>
         </LinearLayout>
     </LinearLayout>
 
