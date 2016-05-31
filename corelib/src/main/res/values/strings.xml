@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">鱼小猫</string>
+    <string name="saving_image">图片保存中...</string>
+    <string name="preparing_card">sdcard准备中...</string>
+    <string name="no_storage_card">没有sdcard</string>
+    <string name="not_enough_space">空间不够</string>
+    <string name="cancel">取消</string>
+    <string name="save">保存</string>
+</resources>

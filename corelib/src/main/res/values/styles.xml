@@ -1,0 +1,45 @@
+<resources>
+
+    <style name="my_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- 搜索框style -->
+    <declare-styleable name="search_text_view">
+        <!--是否允许文本输入-->
+        <attr name="input_enable" format="boolean" />
+        <!--放大镜-->
+        <attr name="magnifier_image" format="reference" />
+        <!--自动清空图片, 如果给定，则表示需要自定清空的配置-->
+        <attr name="delete_image" format="reference" />
+    </declare-styleable>
+
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+
+    <style name="CropButton">
+        <item name="android:layout_margin">1dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">60dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/selector_crop_button</item>
+    </style>
+
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+    <style name="SmallTextView">
+        <item name="android:textColor">@color/dark</item>
+        <item name="android:textSize">@dimen/textSize_small</item>
+    </style>
+
+    <style name="SmallGreyTextView">
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/textSize_small</item>
+    </style>
+</resources>

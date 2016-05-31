@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="48dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_addr_control"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_white"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/line_gray" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/x12"
+                android:layout_marginTop="@dimen/x12"
+                android:text="取消"
+                android:textColor="#7a6b6b"
+                android:background="@drawable/common_white_btn"
+                android:textSize="@dimen/text_size_14" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="#7a6b6b"
+                android:layout_marginTop="22dp"
+                android:textSize="@dimen/text_size_14" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x12"
+                android:layout_marginTop="@dimen/x12"
+                android:background="@drawable/common_white_btn"
+                android:text="确定"
+                android:textColor="#7a6b6b"
+                android:textSize="@dimen/text_size_14" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/x12"
+            android:background="@color/line_gray" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.corelib.view.wheelview.WheelView
+                android:id="@+id/id_province"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+            </com.corelib.view.wheelview.WheelView>
+
+            <com.corelib.view.wheelview.WheelView
+                android:id="@+id/id_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+            </com.corelib.view.wheelview.WheelView>
+
+            <com.corelib.view.wheelview.WheelView
+                android:id="@+id/id_district"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" >
+            </com.corelib.view.wheelview.WheelView>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+

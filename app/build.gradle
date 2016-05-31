@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sjtu.charles"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        baidu {
+        }
+        nineone {
+        }
+        anzhuo {
+        }
+        yingyongbao {
+        }
+        sanliuling {
+        }
+        xiaomi {
+        }
+        wandoujia {
+        }
+        anzhi {
+        }
+        taobao {
+        }
+        yingyonghui {
+        }
+        jifeng {
+        }
+        guangdiantong {
+        }
+        guanwang {
+        }
+        fenxiang {
+        }
+        wangba {
+        }
+        wangmeng {
+        }
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':corelib')
+    //    Junit测试
+    testCompile 'junit:junit:4.12'
+    //    图片加载框架 glide
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    //    注解框架的
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //    关于网络框架：Retrofit2.0
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+}
