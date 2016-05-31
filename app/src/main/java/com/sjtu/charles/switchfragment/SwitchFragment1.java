@@ -89,15 +89,4 @@ public class SwitchFragment1 extends TFragment {
         }
     }
 
-    @OnClick(R.id.btn_switch_to_1)
-    public void onSwitchToLoginClicked(Button button) {
-        getArguments().putInt("direction", CubeAnimation.LEFT);
-        getArguments().putBoolean("withAnimation", true);
-        SwitchFragment2 loginFragment = SwitchFragment2.newInstance(AppConstants.ACTION_REGISTER, true,
-                CubeAnimation.LEFT);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.container, loginFragment);
-        ft.commit();
-    }
-
 }
