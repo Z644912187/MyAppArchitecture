@@ -1,6 +1,7 @@
 package com.sjtu.charles.switchfragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.corelib.animations.fragmentanimations.CubeAnimation;
 import com.corelib.base.ui.TFragment;
 import com.sjtu.charles.R;
 import com.sjtu.charles.core.AppConstants;
+import com.sjtu.charles.main.mvp.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -89,4 +91,9 @@ public class SwitchFragment1 extends TFragment {
         }
     }
 
+    @OnClick(R.id.btn_goin)
+    public void onbtn_goin1Clicked(Button button) {
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
+    }
 }
