@@ -48,39 +48,36 @@
 
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+
     <application
-        android:name="com.sjtu.charles.core.MyApplication"
+        android:name=".core.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--友盟-->
-        <meta-data android:value="57465421e0f55a97620001f0" android:name="UMENG_APPKEY"></meta-data>
-        <meta-data android:value="Umeng" android:name="UMENG_CHANNEL"/>
-       '<meta-data
-        android:name="UMENG_MESSAGE_SECRET"
-        android:value="648658510f09c0f6ae5ad420ed1e2828" >
-    </meta-data>
-        <!--友盟-->
 
-       <!--友盟-->
-       <!-- <service android:name=".core.service.MyPushIntentService" android:process=":push">
+        <!-- 友盟 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57465421e0f55a97620001f0" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng" />
+        '
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="648658510f09c0f6ae5ad420ed1e2828" />
 
-        </service>-->
-        <!--友盟-->
         <activity
-            android:name="com.sjtu.charles.main.mvp.MainActivity"
-            android:label="@string/title_activity_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name="com.sjtu.charles.wallet.mvp.WalletActivity" />
+            android:name=".main.mvp.MainActivity"
+            android:label="@string/title_activity_main"></activity>
+        <activity android:name=".wallet.mvp.WalletActivity" />
         <activity
-            android:name="com.sjtu.charles.login.mvp.LoginActivity"
+            android:name=".login.mvp.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -90,8 +87,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.sjtu.charles.playmate.mvp.MakePlaymateActivity"></activity>
+        <activity android:name=".playmate.mvp.MakePlaymateActivity" />
+        <activity
+            android:name=".switchfragment.SwitchFragmentActivity"
+            android:label="@string/title_activity_switch_fragment"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

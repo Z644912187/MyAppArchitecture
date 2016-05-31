@@ -1,5 +1,8 @@
 package com.corelib.base.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
@@ -114,6 +117,42 @@ public class TActivity extends AppCompatActivity {
             overridePendingTransition(0,0);
         }
         closeCutActivityAnimation();
+    }
+
+    public View mProgressView;
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    public void showProgress(final boolean show, final View view) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mProgressView != null) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+                        int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+                        view.setVisibility(show ? View.GONE : View.VISIBLE);
+                        view.animate().setDuration(shortAnimTime).alpha(
+                                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                view.setVisibility(show ? View.GONE : View.VISIBLE);
+                            }
+                        });
+
+                        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                        mProgressView.animate().setDuration(shortAnimTime).alpha(
+                                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                            }
+                        });
+                    } else {
+                        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
+                        view.setVisibility(show ? View.GONE : View.VISIBLE);
+                    }
+                }
+            }
+        });
     }
 
     /**

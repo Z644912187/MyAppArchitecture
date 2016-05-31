@@ -97,4 +97,5 @@
     <string name="tab_play_together">陪玩</string>
     <string name="tab_news">资讯</string>
     <string name="tab_me">我的</string>
+    <string name="title_activity_switch_fragment">SwitchFragmentActivity</string>
 </resources>
