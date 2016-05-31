@@ -108,6 +108,19 @@ public class TActivity extends AppCompatActivity {
         transaction.replace(containerViewId, fragment).commit();
     }
 
+    /**
+     * 将一个fragment替换为另一个，并在后台堆栈中保留之前的状态
+     * 通过 getSupportFragmentManager().popBackStack(); 出栈
+     * @param containerViewId
+     * @param fragment
+     */
+    public void addToBackStackFragment(int containerViewId, Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(containerViewId, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
     @Override
     public void startActivity(Intent intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && cutActivityAnimationToggle) {

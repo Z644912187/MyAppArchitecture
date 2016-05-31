@@ -1,8 +1,10 @@
 package com.sjtu.charles.switchfragment;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.corelib.animations.fragmentanimations.CubeAnimation;
@@ -33,11 +35,24 @@ public class SwitchFragmentActivity extends TActivity {
             action = intent.getAction();
         }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, SwitchFragment1.newInstance(action, false, -1))
-                .commitAllowingStateLoss();
+        addToBackStackFragment(R.id.container, SwitchFragment1.newInstance(action, false, -1));
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (getSupportFragmentManager().getFragments().size() > 1) {
+                    //回退到Fragment1
+                    //将当前的事务退出回退栈
+                    getSupportFragmentManager().popBackStack();
+                } else {
+                    onBackPressed();
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @OnClick(R.id.btn_switch_to_2)
@@ -45,10 +60,7 @@ public class SwitchFragmentActivity extends TActivity {
         SwitchFragment2 loginFragment = SwitchFragment2.newInstance(AppConstants.ACTION_REGISTER, true,
                 CubeAnimation.LEFT);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, loginFragment)
-                .commitAllowingStateLoss();
+        addToBackStackFragment(R.id.container, loginFragment);
     }
 
 
@@ -56,11 +68,7 @@ public class SwitchFragmentActivity extends TActivity {
     public void onSwitchTo1Clicked(Button button) {
         SwitchFragment1 loginFragment = SwitchFragment1.newInstance(AppConstants.ACTION_REGISTER, true,
                 CubeAnimation.LEFT);
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, loginFragment)
-                .commitAllowingStateLoss();
+        addToBackStackFragment(R.id.container, loginFragment);
     }
 
 }
