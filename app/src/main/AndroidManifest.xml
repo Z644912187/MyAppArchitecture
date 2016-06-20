@@ -74,7 +74,7 @@
 
         <activity
             android:name=".main.mvp.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
         <activity android:name=".wallet.mvp.WalletActivity" />
         <activity
             android:name=".login.mvp.LoginActivity"
@@ -98,6 +98,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".rxactivitydemo.DemoRxActivity"></activity>
     </application>
 
 </manifest>
