@@ -15,7 +15,7 @@
  */
 package com.sjtu.charles.core.http.converter.scalars;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ final class ScalarResponseBodyConverters {
 
     @Override public String convert(ResponseBody value) throws IOException {
       String valueStr = value.string();
-      LogUtil.info("NET", "----        ResponseStr      ---- " + "\n" + valueStr);
+      Log.i("NET", "----        ResponseStr      ---- " + "\n" + valueStr);
       return valueStr;
     }
   }

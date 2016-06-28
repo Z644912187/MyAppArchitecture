@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 
 /**
  * Created by charles
@@ -34,7 +34,7 @@ public class TActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TAG=getLocalClassName();
-        LogUtil.info(TAG,"onCreate");
+        Log.i(TAG,"onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setEnterTransition(new Explode().setDuration(ANIMATION_DURATION));
         }
@@ -44,13 +44,13 @@ public class TActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        LogUtil.info(TAG,"onStart");
+        Log.i(TAG,"onStart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtil.info(TAG,"onResume");
+        Log.i(TAG,"onResume");
         if (getSupportActionBar() != null && navigationIconToggle) {
             getSupportActionBar().setElevation(0);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -61,20 +61,20 @@ public class TActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtil.info(TAG, "onPause");
+        Log.i(TAG, "onPause");
 
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        LogUtil.info(TAG,"onStop");
+        Log.i(TAG,"onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtil.info(TAG,"onDestroy");
+        Log.i(TAG,"onDestroy");
     }
 
     /**

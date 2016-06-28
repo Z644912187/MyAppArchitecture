@@ -206,7 +206,7 @@ public class Network {
             NetworkInfo[] info = connectivity.getAllNetworkInfo();
             if (info != null) {
                 for (int i = 0; i < info.length; i++) {
-                    // if (info[i].getType() == ConnectivityManager.TYPE_WIFI) {
+                    // if (i[i].getType() == ConnectivityManager.TYPE_WIFI) {
                     Log.i(TAG, "NetworkInfo[" + i + "]isAvailable : " + info[i].isAvailable());
                     Log.i(TAG, "NetworkInfo[" + i + "]isConnected : " + info[i].isConnected());
                     Log.i(TAG, "NetworkInfo[" + i + "]isConnectedOrConnecting : " + info[i].isConnectedOrConnecting());

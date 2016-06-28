@@ -15,7 +15,7 @@
  */
 package com.sjtu.charles.core.http.converter.gson;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -41,7 +41,7 @@ final class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
         try {
             return t;
         } finally {
-            LogUtil.info("NET", "----        ResponseStr      ---- " + "\n" + t.toString());
+            Log.i("NET", "----        ResponseStr      ---- " + "\n" + t.toString());
             value.close();
         }
     }

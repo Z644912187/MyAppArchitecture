@@ -1,7 +1,5 @@
 package com.corelib.log;
 
-import android.util.Log;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -12,14 +10,14 @@ import org.apache.log4j.Logger;
  * 日志级别
  * ALL<DEBUG<INFO<WARN<ERROR<FATAL<OFF
  */
-public class LogUtil {
+public class Log {
     /**
      * 记录详细的重要信息
      *
      * @param tag
      * @param message
      */
-    public static void debug(String tag, String message) {
+    public static void d(String tag, String message) {
         Logger.getLogger(tag).debug(message);
     }
 
@@ -29,7 +27,7 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-    public static void info(String tag, String message) {
+    public static void i(String tag, String message) {
         Logger.getLogger(tag).info(message);
     }
 
@@ -39,8 +37,8 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-//    public static void info(String tag, Object message) {
-//        info(tag, new Gson().toJson(message));
+//    public static void i(String tag, Object message) {
+//        i(tag, new Gson().toJson(message));
 //    }
 
     /**
@@ -49,7 +47,7 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-    public static void warn(String tag, String message) {
+    public static void w(String tag, String message) {
         Logger.getLogger(tag).warn(message);
     }
 
@@ -59,7 +57,7 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-    public static void error(String tag, String message) {
+    public static void e(String tag, String message) {
         Logger.getLogger(tag).error(message);
     }
 
@@ -71,11 +69,7 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-    public static void error(String tag, String message, Throwable tr) {
-        if(LogConfigure.TOGGLE_CONSOLE)
-        {
-            Log.e(tag, message, tr);
-        }
+    public static void e(String tag, String message, Throwable tr) {
         Logger.getLogger(tag).error(message, tr);
     }
 
@@ -85,11 +79,7 @@ public class LogUtil {
      * @param tag
      * @param message
      */
-    public static void fatal(String tag, String message) {
-        if(LogConfigure.TOGGLE_CONSOLE)
-        {
-            Log.e(tag, message);
-        }
+    public static void f(String tag, String message) {
         Logger.getLogger(tag).fatal(message);
     }
 
@@ -99,11 +89,7 @@ public class LogUtil {
      * @param message
      * @param tr  崩溃异常堆栈
      */
-    public static void fatal(String tag, String message, Throwable tr) {
-        if(LogConfigure.TOGGLE_CONSOLE)
-        {
-            Log.e(tag, message, tr);
-        }
+    public static void f(String tag, String message, Throwable tr) {
         Logger.getLogger(tag).fatal(message, tr);
     }
 }

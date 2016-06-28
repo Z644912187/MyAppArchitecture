@@ -2,7 +2,7 @@ package com.sjtu.charles.wallet.mvp;
 
 import android.content.Context;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 import com.corelib.utils.net.Network;
 import com.sjtu.charles.wallet.http.WalletHttp;
 
@@ -48,7 +48,7 @@ public class WalletPresenter implements WalletContract.Presenter {
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 mView.rechargeFailed();
-                LogUtil.fatal(TAG,"rechargeWallet onFailure",t);
+                Log.f(TAG,"rechargeWallet onFailure",t);
             }
         }, accout);
 
@@ -72,7 +72,7 @@ public class WalletPresenter implements WalletContract.Presenter {
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 mView.withdrawFailed();
-                LogUtil.fatal(TAG,"withdrawDeposit onFailure",t);
+                Log.f(TAG,"withdrawDeposit onFailure",t);
             }
         }, accout);
 

@@ -1,6 +1,6 @@
 package com.sjtu.charles.core.http.interceptor;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 
 import java.io.IOException;
 
@@ -20,8 +20,8 @@ public class CoreInterceptor implements Interceptor {
         Request request = chain.request();
         Response response = chain.proceed(request);
 
-        LogUtil.info(TAG, "----        Request       ---- " + "\n" + request.toString());
-        LogUtil.info(TAG, "----        Response      ---- " + "\n" + response.toString());
+        Log.i(TAG, "----        Request       ---- " + "\n" + request.toString());
+        Log.i(TAG, "----        Response      ---- " + "\n" + response.toString());
 
         return response;
     }

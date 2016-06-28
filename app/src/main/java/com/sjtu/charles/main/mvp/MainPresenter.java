@@ -1,6 +1,6 @@
 package com.sjtu.charles.main.mvp;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 import com.sjtu.charles.login.http.response.LolLoginResponse;
 import com.sjtu.charles.main.http.MainHttp;
 
@@ -22,14 +22,14 @@ public class MainPresenter implements MainContract.Present {
             public void onResponse(Call<LolLoginResponse> call, Response<LolLoginResponse> response) {
                 if (response.isSuccessful()) {
                     LolLoginResponse lolLoginResponse = response.body();
-                    LogUtil.error(TAG, lolLoginResponse.toString());
+                    Log.e(TAG, lolLoginResponse.toString());
                 }
-                LogUtil.debug(TAG,response.toString());
+                Log.d(TAG,response.toString());
             }
 
             @Override
             public void onFailure(Call<LolLoginResponse> call, Throwable t) {
-                LogUtil.fatal(TAG,"onFailure",t);
+                Log.f(TAG,"onFailure",t);
             }
         });
     }

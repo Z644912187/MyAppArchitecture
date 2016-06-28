@@ -2,9 +2,13 @@ package com.sjtu.charles.core;
 
 import android.app.Application;
 
+import com.corelib.crash.AndroidCrash;
+import com.corelib.crash.HttpReportCallback;
 import com.corelib.log.LogConfigure;
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 import com.sjtu.charles.core.cache.CachePath;
+
+import java.io.File;
 
 
 //import com.squareup.leakcanary.LeakCanary;
@@ -24,14 +28,11 @@ public class MyApplication extends Application {
         super.onCreate();
         mInstance = this;
 
-        //初始化日志
-        LogConfigure.init(CachePath.LOG);
-
-        recordUncaughtException();
+        initLog();
 
         initModules();
 
-        LogUtil.info(TAG, "app startup....");
+        Log.i(TAG, "app startup....");
 //        LeakCanary.install(this);
     }
 
@@ -52,15 +53,20 @@ public class MyApplication extends Application {
         return mInstance;
     }
 
-    /**
-     * 记录uncaughtException日志, 打印堆栈信息
-     */
-    private void recordUncaughtException() {
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+
+    private void initLog() {
+
+        //初始化日志
+        LogConfigure.init(CachePath.LOG);
+
+        /**
+         * 记录uncaughtException日志
+         */
+        AndroidCrash.getInstance().setCrashReporter(new HttpReportCallback() {
             @Override
-            public void uncaughtException(Thread thread, Throwable ex) {
-                LogUtil.fatal(TAG, "UncaughtException", ex);
+            public void uploadException2remote(File file) {
+                //TODO 可以直接上传文件
             }
-        });
+        }).init(this,CachePath.LOG_CRASH);
     }
 }

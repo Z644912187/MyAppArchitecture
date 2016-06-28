@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 
 /**
  * Created by charles
@@ -26,19 +26,19 @@ public class TFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         TAG = getClass().getName();
-        LogUtil.info(TAG, "onAttach");
+        Log.i(TAG, "onAttach");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         TAG = getClass().getName();
         super.onCreate(savedInstanceState);
-        LogUtil.info(TAG,"onCreate");
+        Log.i(TAG,"onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LogUtil.info(TAG, "onCreateView");
+        Log.i(TAG, "onCreateView");
         return super.onCreateView(inflater, container, savedInstanceState);
 
     }
@@ -46,31 +46,31 @@ public class TFragment extends Fragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        LogUtil.info(TAG, "onHiddenChanged");
+        Log.i(TAG, "onHiddenChanged");
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        LogUtil.info(TAG, "onActivityCreated");
+        Log.i(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public void onResume() {
-        LogUtil.info(TAG, "onResume");
+        Log.i(TAG, "onResume");
         super.onResume();
     }
 
     @Override
     public void onDestroyView() {
-        LogUtil.info(TAG, "onDestroyView");
+        Log.i(TAG, "onDestroyView");
         super.onDestroyView();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        LogUtil.info(TAG, "onDestroy");
+        Log.i(TAG, "onDestroy");
     }
 
     public void showToast(final String text) {

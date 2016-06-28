@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
 
-import com.corelib.log.LogUtil;
+import com.corelib.log.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -354,11 +354,11 @@ public class PreferencesUtils {
                 return (T) Float.valueOf(sp.getFloat(key, 0L));
             }
         } catch (InstantiationException e) {
-            LogUtil.error("system", "类型输入错误或者复杂类型无法解析[" + e.getMessage() + "]");
+            Log.e("system", "类型输入错误或者复杂类型无法解析[" + e.getMessage() + "]");
         } catch (IllegalAccessException e) {
-            LogUtil.error("system", "类型输入错误或者复杂类型无法解析[" + e.getMessage() + "]");
+            Log.e("system", "类型输入错误或者复杂类型无法解析[" + e.getMessage() + "]");
         }
-        LogUtil.error("system", "无法找到" + key + "对应的值");
+        Log.e("system", "无法找到" + key + "对应的值");
         return null;
     }
 }
