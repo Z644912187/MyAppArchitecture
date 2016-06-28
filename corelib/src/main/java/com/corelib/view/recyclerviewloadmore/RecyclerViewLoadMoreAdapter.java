@@ -1,33 +1,23 @@
 package com.corelib.view.recyclerviewloadmore;
 
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.corelib.R;
 
-/**
- * 用法：https://github.com/Z644912187/RefreshLoadMoreDemo
- */
 public class RecyclerViewLoadMoreAdapter extends Adapter<ViewHolder> {
 
     private static final int TYPE_FOOTER = 0x11001;
-    protected RecyclerView recyclerView;
-
-    RecyclerView.LayoutManager layoutManager;
 
     public void setRecyclerView(RecyclerView recyclerView) {
-        setRecyclerView(recyclerView,null);
-    }
-
-    public void setRecyclerView(RecyclerView recyclerView, final SwipeRefreshLayout swipeRefreshLayout) {
-        this.recyclerView = recyclerView;
-        layoutManager = recyclerView.getLayoutManager();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -37,23 +27,60 @@ public class RecyclerViewLoadMoreAdapter extends Adapter<ViewHolder> {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                int lastVisibleItemPosition = -1;
-                if (layoutManager instanceof LinearLayoutManager) {
-                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                    lastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition();
+                if (!recyclerView.canScrollVertically(-1)) {
+                    onScrolledToTop();
+                } else if (!recyclerView.canScrollVertically(1)) {
+                    onScrolledToBottom();
+                } else if (dy < 0) {
+                    onScrolledUp();
+                } else if (dy > 0) {
+                    onScrolledDown();
                 }
-                if (swipeRefreshLayout != null) {
-                    boolean isRefreshing = swipeRefreshLayout.isRefreshing();
-                    if (isRefreshing) {
-                        notifyItemRemoved(getItemCount());
-                        return;
-                    }
-                }
-                if (lastVisibleItemPosition + 1 == getItemCount() && onLoadMoreListener != null) {
+            }
+            public void onScrolledUp() {}
+
+            public void onScrolledDown() {}
+
+            public void onScrolledToTop() {}
+
+            public void onScrolledToBottom() {
+                if (onLoadMoreListener != null) {
+                    setLoading(true);
                     onLoadMoreListener.OnLoadMore();
                 }
             }
         });
+    }
+
+    public void setLoading(boolean flag) {
+        if (mLLloading != null) {
+            mLLloading.setVisibility(flag?View.VISIBLE:View.GONE);
+        }
+        if (mTvLoadingMore != null) {
+            mTvLoadingMore.setVisibility(flag?View.GONE:View.VISIBLE);
+        }
+    }
+
+    /**
+     * 加载结束提示信息
+     * @param text 低部显示提示信息
+     */
+    public void setLoadedHint(CharSequence text) {
+        if (mLLloading != null) {
+            mLLloading.setVisibility(View.GONE);
+        }
+        if (mTvLoadingMore != null) {
+            mTvLoadingMore.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(text)) {
+                mTvLoadingMore.setText(text);
+            } else {
+                mTvLoadingMore.setText(R.string.load_no_more);
+            }
+        }
+    }
+
+    public void setLoadedHint() {
+        setLoadedHint(null);
     }
 
     @Override
@@ -80,13 +107,42 @@ public class RecyclerViewLoadMoreAdapter extends Adapter<ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        if (holder instanceof FootViewHolder) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onLoadMoreListener != null) {
+                        setLoading(true);
+                        onLoadMoreListener.OnLoadMore();
+                    }
+                }
+            });
+            mTvLoadingTitle = ((FootViewHolder) holder).loadingTitle;
+            mPbLoading = ((FootViewHolder) holder).loadingPb;
+            mTvLoadingMore = ((FootViewHolder) holder).loadingMore;
+            mLLloading = ((FootViewHolder) holder).llLoading;
+        }
     }
 
-    static class FootViewHolder extends ViewHolder {
+    private View mPbLoading;
+    private TextView mTvLoadingTitle;
+    private TextView mTvLoadingMore;
+    private LinearLayout mLLloading;
+
+    class FootViewHolder extends ViewHolder {
+
+        ProgressBar loadingPb;
+        TextView loadingTitle;
+        TextView loadingMore;
+        LinearLayout llLoading;
         public FootViewHolder(View view) {
             super(view);
+            llLoading = (LinearLayout) view.findViewById(R.id.ll_loading_more);
+            loadingTitle = (TextView) view.findViewById(R.id.tv_load_title);
+            loadingPb = (ProgressBar) view.findViewById(R.id.pb_load_animate);
+            loadingMore = (TextView) view.findViewById(R.id.tv_load_no_more);
         }
+
     }
 
     public interface OnLoadMoreListener {
