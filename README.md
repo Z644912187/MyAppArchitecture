@@ -50,3 +50,30 @@ LogUtil.info("TAG", "INFO");
 
 #MVP开发模板
 对于不熟悉MVP的小伙伴们可以参考 “钱包界面WalletActivity”，这部分通过比较详细代码展现MVP的实现"# MyAppArchitecture" 
+
+#关于支持手势滑动退出
+1 新增Activity必须继承
+com.corelib.base.ui.SwipeBackActivity
+6.2 Activity动画实现
+第一步：AndroidManifest 注册 Activity时，声明主题theme如下：
+<activity
+    android:name=".xxxActivity"
+    android:screenOrientation="portrait"
+    android:theme="@style/AppThemeCustomAnimation" />
+
+第二步：覆盖SwipeBackActivity中的isSupportSwipeBack()方法
+该方法返回true，表示支持向右滑动推出activity；否则不支持该效果
+@Override
+protected boolean isSupportSwipeBack() {
+    return true;
+}
+
+注：关于手势触法区域大小，可通过更改mValidDragigit大小
+public class PagerEnabledSlidingPaneLayout extends SlidingPaneLayout {
+    /**
+     * 手势滑动退出的有效相应区域
+     */
+    private int mValidDragArea;
+    private float mValidDragigit = 25;
+。。。。
+}
