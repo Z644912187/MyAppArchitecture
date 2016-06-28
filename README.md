@@ -54,14 +54,13 @@ LogUtil.info("TAG", "INFO");
 #关于支持手势滑动退出
 Activity动画实现
 <p>第一步：新增Activity必须继承 com.corelib.base.ui.SwipeBackActivity</p>
-<p>第二步：AndroidManifest 注册 Activity时，声明主题theme如下：
+<p>第二步：AndroidManifest 注册 Activity时，声明主题theme如下：</p>
 <pre><code>
 <activity
     android:name=".xxxActivity"
     android:screenOrientation="portrait"
     android:theme="@style/AppThemeCustomAnimation" />
 </code></pre>
-</p>
 <p>第三步：覆盖SwipeBackActivity中的isSupportSwipeBack()方法，该方法返回true，表示支持向右滑动推出activity；否则不支持该效果</p>
 <pre><code>
 @Override
