@@ -25,7 +25,7 @@ import com.corelib.log.Log;
  * Data: 2016/3/30.
  */
 public class TActivity extends AppCompatActivity {
-    protected String TAG;
+    public final static String TAG = TActivity.class.getCanonicalName();
     private static final int ANIMATION_DURATION = 1000;
     public boolean navigationIconToggle = true;
     public boolean cutActivityAnimationToggle = false;
@@ -33,7 +33,6 @@ public class TActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TAG=getLocalClassName();
         Log.i(TAG,"onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setEnterTransition(new Explode().setDuration(ANIMATION_DURATION));
